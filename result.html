@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SafeBite AI - Analysis Result</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Segoe UI',sans-serif;
+            background:linear-gradient(135deg,#e8f5e9,#f4f7fb);
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:30px;
+        }
+
+        .container{
+            background:white;
+            width:900px;
+            max-width:95%;
+            padding:40px;
+            border-radius:25px;
+            text-align:center;
+            box-shadow:0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        h1{
+            color:#2e8b57;
+            font-size:42px;
+            margin-bottom:10px;
+        }
+
+        .subtitle{
+            color:#666;
+            margin-bottom:25px;
+        }
+
+        .food-name{
+            font-size:34px;
+            font-weight:bold;
+            color:#222;
+            margin-bottom:20px;
+        }
+
+        .food-image{
+            width:320px;
+            max-width:100%;
+            border-radius:18px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.15);
+            margin-bottom:30px;
+        }
+
+        .stats{
+            display:flex;
+            justify-content:center;
+            flex-wrap:wrap;
+            gap:20px;
+            margin-bottom:25px;
+
+            <div class="card">
+    <div class="card-title">🤖 AI Confidence</div>
+    <div class="card-value">{{ confidence }}%</div>
+</div>
+
+<div class="card">
+    <div class="card-title">❤️ Health Rating</div>
+    <div class="card-value" style="font-size:20px;">
+        {{ health_rating }}
+    </div>
+</div> 
+        }
+
+        .card{
+            background:#f8f9fb;
+            width:180px;
+            padding:20px;
+            border-radius:18px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .card-title{
+            color:#666;
+            font-size:15px;
+            margin-bottom:10px;
+        }
+
+        .card-value{
+            font-size:30px;
+            font-weight:bold;
+            color:#2e8b57;
+        }
+
+        .status{
+            font-size:24px;
+            font-weight:bold;
+            margin-top:15px;
+        }
+
+        .excellent{
+            color:green;
+        }
+
+        .average{
+            color:orange;
+        }
+
+        .poor{
+            color:red;
+        }
+
+        .recommendation{
+            margin-top:25px;
+            background:#f5f9ff;
+            padding:20px;
+            border-radius:15px;
+        }
+
+        .recommendation h3{
+            margin-bottom:10px;
+            color:#2e8b57;
+        }
+
+        .btn{
+            margin-top:25px;
+            padding:14px 28px;
+            border:none;
+            border-radius:12px;
+            background:#2e8b57;
+            color:white;
+            font-size:17px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .btn:hover{
+            background:#246b45;
+            transform:translateY(-2px);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🥗 SafeBite AI</h1>
+    <p class="subtitle">Food Analysis Report</p>
+
+    <div class="food-name">
+        {{ food }}
+    </div>
+
+    {% if image %}
+    <img
+        src="{{ url_for('static', filename='uploads/' + image) }}"
+        class="food-image">
+    {% endif %}
+
+    <div class="stats">
+
+        <div class="card">
+            <div class="card-title">🔥 Calories</div>
+            <div class="card-value">{{ calories }}</div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🥩 Protein</div>
+            <div class="card-value">{{ protein }}g</div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🧪 Hygiene</div>
+            <div class="card-value">{{ hygiene }}</div>
+        </div>
+
+    </div>
+
+    {% if hygiene >= 85 %}
+        <div class="status excellent">
+            ✅ Excellent Hygiene
+        </div>
+
+    {% elif hygiene >= 70 %}
+        <div class="status average">
+            ⚠️ Average Hygiene
+        </div>
+
+    {% else %}
+        <div class="status poor">
+            ❌ Poor Hygiene
+        </div>
+    {% endif %}
+
+    <div class="recommendation">
+
+        <h3>💡 Recommendation</h3>
+
+        {% if calories > 450 %}
+            This food is high in calories. Consider consuming it in moderation.
+        {% elif calories > 250 %}
+            Suitable for occasional consumption as part of a balanced diet.
+        {% else %}
+            A relatively lighter food option when consumed in proper portions.
+        {% endif %}
+
+    </div>
+
+    <a href="/">
+        <button class="btn">
+            🔄 Analyze Another Food
+        </button>
+    </a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SafeBite AI</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Segoe UI',sans-serif;
+            background:linear-gradient(135deg,#e8f5e9,#f4f7fb);
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .container{
+            background:white;
+            width:600px;
+            padding:40px;
+            border-radius:20px;
+            text-align:center;
+            box-shadow:0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        h1{
+            color:#2e8b57;
+            font-size:42px;
+            margin-bottom:10px;
+        }
+
+        .subtitle{
+            color:#666;
+            margin-bottom:30px;
+            font-size:18px;
+        }
+
+        .upload-box{
+            border:2px dashed #2e8b57;
+            padding:30px;
+            border-radius:15px;
+            background:#f8fffa;
+            margin-bottom:25px;
+        }
+
+        input[type="file"]{
+            width:100%;
+            padding:10px;
+        }
+
+        button{
+            width:100%;
+            padding:15px;
+            font-size:18px;
+            background:#2e8b57;
+            color:white;
+            border:none;
+            border-radius:12px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        button:hover{
+            transform:translateY(-2px);
+            background:#246b45;
+        }
+
+        .features{
+            margin-top:25px;
+            display:flex;
+            justify-content:space-around;
+            flex-wrap:wrap;
+            gap:10px;
+        }
+
+        .feature{
+            background:#f4f7fb;
+            padding:10px 15px;
+            border-radius:10px;
+            font-size:14px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🥗 SafeBite AI</h1>
+
+    <p class="subtitle">
+        AI-Powered Food Hygiene & Nutrition Analyzer
+    </p>
+
+    <form action="/analyze"
+          method="POST"
+          enctype="multipart/form-data">
+
+        <div class="upload-box">
+
+            <h3>📸 Upload Food Image</h3>
+            <br>
+
+            <input type="file"
+                   name="food_image"
+                   required>
+
+        </div>
+
+        <button type="submit">
+            🚀 Analyze Food
+        </button>
+
+        <script>
+document.querySelector("form").addEventListener("submit", function() {
+
+    document.querySelector("button").innerHTML =
+        "⏳ Analyzing Food...";
+
+    document.querySelector("button").disabled = true;
+
+});
+</script>
+
+    </form>
+
+    <div class="features">
+
+        <div class="feature">🤖 AI Detection</div>
+
+        <div class="feature">🔥 Calories</div>
+
+        <div class="feature">🥩 Protein</div>
+
+        <div class="feature">🧪 Hygiene Score</div>
+
+    </div>
+
+    <div style="
+margin-top:25px;
+color:#777;
+font-size:14px;
+">
+    Built with ❤️ using Flask & AI
+</div>
+
+</div>
+
+</body>
+</html>
